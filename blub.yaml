@@ -56,9 +56,6 @@ write_files:
 runcmd:
   - printf "[sshd]\nenabled = true\nport = ssh, 2222\nbanaction = iptables-multiport" > /etc/fail2ban/jail.local
   - systemctl enable fail2ban
-  - ufw allow 2222
-  - ufw allow 51820/udp
-  - ufw enable
   - umask 077
   - wg genkey | tee /etc/wireguard/server.key | wg pubkey > /etc/wireguard/server.pub
   - wg genkey | tee /home/user/client1.key | wg pubkey > /home/user/client1.pub
@@ -74,4 +71,7 @@ runcmd:
   - echo "net.ipv4.ip_forward=1" | tee /etc/sysctl.d/99-wireguard.conf
   - sysctl --system
   - sudo systemctl enable wg-quick@wg0
+  - ufw allow 2222
+  - ufw allow 51820/udp
+  - ufw enable  
   - reboot
