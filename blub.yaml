@@ -47,7 +47,6 @@ write_files:
       [Interface]
       PrivateKey = <CLIENT_PRIVATE_KEY>
       Address = 10.8.0.2/32
-      DNS = 9.9.9.9
 
       [Peer]
       PublicKey = <SERVER_PUBLIC_KEY>
