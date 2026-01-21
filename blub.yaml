@@ -12,6 +12,7 @@ packages:
   - iptables
   - openvpn
   - wireguard
+  - qrencode
 package_update: true
 package_upgrade: true
 write_files:
@@ -33,4 +34,6 @@ runcmd:
   - systemctl enable fail2ban
   - ufw allow 2222
   - ufw enable
+  - umask 077
+  - wg genkey | tee /etc/wireguard/server.key | wg pubkey > /etc/wireguard/server.pub
   - reboot
